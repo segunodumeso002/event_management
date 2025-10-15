@@ -1,0 +1,32 @@
+service: event-management-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-2
+  stage: prod
+  environment:
+    DATABASE_URL: postgresql://postgres:Allsouth22$$@event-management-db.cns6uem64ihd.us-east-2.rds.amazonaws.com:5432/event_management
+    JWT_SECRET: 35e71217e649aa026e410490656430fd872556bf1dc0f7e624ed9578de7b4e84
+    GOOGLE_MAPS_API_KEY: AIza_placeholder_key
+    STRIPE_SECRET_KEY: sk_test_placeholder_key
+    EMAIL_USER: placeholder@gmail.com
+    EMAIL_PASS: placeholder_password
+    CLIENT_URL: https://your-frontend-domain.netlify.app
+
+functions:
+  api:
+    handler: lambda.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+      - http:
+          path: /
+          method: ANY
+          cors: true
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin

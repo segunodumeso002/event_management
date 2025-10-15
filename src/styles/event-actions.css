@@ -1,0 +1,12 @@
+/* Event Actions */
+.event-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.event-actions .btn {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
